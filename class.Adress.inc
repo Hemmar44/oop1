@@ -33,15 +33,18 @@ class Address {
 	protected $_time_created;
 	protected $_time_updated;
 	
+        
+                function __construct(){
+                    $this -> _time_created = time();
+                    
+                }
 	/* 
 	* Magic __get
 	*@param string $name
 	* @return mixed
 	*/
 	
-	/*
-	
-	function __get($name) {
+                function __get($name) {
 		// Postal code lookup if unset
 		if(!$this->_postal_code) {
 			$this->_postal_code = $this->_postal_code_guess();
@@ -57,12 +60,12 @@ class Address {
 		trigger_error("Undefined property via __get: " .$name);
 		return Null; 
 	}
-	*/
+	
 	/* 
 	* Magic __set
 	*@param string $name
 	* @param mixed $value
-	*
+	*/
 	function __set($name, $value) {
 		//Allow anything to set the postal code 
 		if('postal_code' == $name) {
@@ -81,12 +84,12 @@ class Address {
 	*Guess the postal code given the subdivision and city_name
 	*@todo Replace with a database lookup
 	* @return string
-	*
+	*/
 	
 	protected function _postal_code_guess() {
 		return "LOOKUP";
 	}
-	*/
+	
 	
 		/* 
 	*Display an address in HTML.
