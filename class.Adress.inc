@@ -4,8 +4,6 @@ class Address {
 	/**
 	* Physical address.
 	*/
-	
-	public $streetName;
 	//Street address
 	
 	public $street_address_1;
