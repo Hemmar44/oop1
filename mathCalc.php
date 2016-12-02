@@ -22,7 +22,7 @@ class calc {
               return $this->x + $this->y;
                break;
           case "-":
-              return  $this->x - $this->y;
+              return $this->x - $this->y;
               break;
           case "*":
               return $this->x* $this->y;
@@ -48,6 +48,10 @@ class calc {
           
           }
           
+          /*
+           * checking if user is trying to divide by zero
+           * @result bool
+           */
            
           public function divisionZero() {
               If($this->y!=="0" or $this->sign !=="/"){
@@ -68,32 +72,33 @@ $first = $_POST["first"];
 $type = $_POST["type"];
 $second = $_POST["second"];
 
-//echo "<h2>Values from inputs into that object</h2>";
+
 $check = new calc;
 $check -> x = $first;
 $check -> y = $second;
 $check -> sign = $type;
 
-//echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
 
-//echo "<h2>Calculations with data from inputs</h2>";
 if($check -> divisionZero()){
     if($check -> checkNumeric()){
     $result = $check -> calculations();
     }
     else{
-    $result = "Only numbers";
+    $result = "<span>Err</span>";
+    //$message = "<span>Err</span>";
     }
 }
 else {
- $result = $check -> divisionZero()."You can't divide by zero";
+ $result = "<span>Err</span>";
+ $message = $check -> divisionZero();//."You can't divide by zero.";
 }
 
 
 }
 
 else {
-$result = "You must put both numbers in";
+$result =  "0";
+$message = "<span class='black'>Please fill both inputs in.</span>";
 }
 
 
@@ -113,10 +118,42 @@ $result = "You must put both numbers in";
 	<link rel="stylesheet" href="css/style.css"/>
 	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>-->
-
+        <style>
+            body{
+                text-align: center;
+                }
+                table{
+                    width: 200px;
+                    margin: 0 auto 10px auto;
+                }
+                div{
+                    width:100px;
+                    overflow-x: auto;
+                    border:1px solid black;
+                    margin: 15px auto 15px auto;
+                }
+                p{
+                    width: 600px;
+                    margin: 0 auto;
+                    color:red;
+                }
+                input[type="text"]{
+                    width: 50%;
+                    margin:0 auto;
+                    background-color: lightskyblue;
+                }
+                span {
+                    color:red;
+                }
+                .black {
+                    color:black;
+                }
+        </style>
 </head>
 <body>
-    <form method="post">
+    <main>
+        <section>
+        <form method="post">
         <table>
             <thead>
                 <tr>
@@ -141,8 +178,14 @@ $result = "You must put both numbers in";
         </table>
         <input type="submit" value="Calculate"/>
     </form>
-    <?php if(isset($result)){ echo $result;} ?>
-        
+    </section>
+    <section>
+        <figure><?php if(isset($first, $type)) {echo $first." ".$type." ".$second." =";} else {echo "<p>".$message."</p>";} ?></figure>
+        <div>
+            <?php if(isset($result)){ echo $result;} ?>
+        </div>
+    </section>
+    </main>
     
     
     
