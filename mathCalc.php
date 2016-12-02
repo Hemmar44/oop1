@@ -45,8 +45,18 @@ class calc {
           else{
               return false;
           }
-     
-}
+          
+          }
+          
+           
+          public function divisionZero() {
+              If($this->y==0 and $this->sign =="/"){
+                  return false;
+              }
+              else {return true;}
+          }
+      
+
 
 
 }
@@ -64,11 +74,16 @@ $check -> sign = $type;
 echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
 
 //echo "<h2>Calculations with data from inputs</h2>";
-if($check -> checkNumeric()){
-$result = $check -> calculations();
+if($check -> divisionZero()){
+    if($check -> checkNumeric()){
+    $result = $check -> calculations();
+    }
+    else{
+    $result = "Only numbers";
+    }
 }
-else{
-$result = "Only numbers";
+else {
+ $result = "Cannot divide by zero";
 }
 
 
