@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST["first"]) and $_POST["first"]!=""){
+if (isset($_POST["first"]) and $_POST["first"]!="" and isset($_POST["second"]) and $_POST["second"]!="") {
     
 class calc {
     
@@ -12,7 +12,7 @@ class calc {
     public $sign;
    
     /*
-     * creating method
+     * creating method that calculates the result
      */
     
     public function calculations() {
@@ -31,32 +31,25 @@ class calc {
               return $this->x/ $this->y;
               break;
       }
+    }
+       /*
+        * checking if input is a number
+        * 
+        * result bool
+        */
+    
+      public function checkNumeric() {
+          if(is_numeric($this->x) and is_numeric($this->y)){
+              return true;
+          }
+          else{
+              return false;
+          }
+     
 }
 
 
 }
-/*
-echo "<h2>Instantaiating Calculation </h2>";
-
-$check = new calc;
-
-echo "<h2>No numbers</h2>";
-
-echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
-
-echo "<h2>Intializng Values</h2>";
-
-$check -> x = 3;
-$check -> y = 12;
-$check -> sign = "*";
-
-echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
-
-echo "<h2>Calculations</h2>";
-
-echo $check -> calculations();
-
-echo "<p><pre>".var_export($_POST, TRUE). "</pre><p>";*/
 
 $first = $_POST["first"];
 $type = $_POST["type"];
@@ -68,22 +61,23 @@ $check -> x = $first;
 $check -> y = $second;
 $check -> sign = $type;
 
-//echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
+echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
 
 //echo "<h2>Calculations with data from inputs</h2>";
-
+if($check -> checkNumeric()){
 $result = $check -> calculations();
-
-//header("Location: mathCalc.php");
-//exit();
+}
+else{
+$result = "Only numbers";
 }
 
-//else {
-//$result = "Musisz wprowadzić dane";
-//header("Location: mathCalc.php");
-//}
 
-//echo $result;
+}
+
+else {
+$result = "You must put both numbers in";
+}
+
 
 ?>
 
@@ -94,7 +88,7 @@ $result = $check -> calculations();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 	
-    <title><!--wpisz tytuł--> </title>
+    <title>myCalc </title>
 	
 	<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
 	<link rel="stylesheet" href="css/fontello/css/fontello.css"/>
