@@ -50,10 +50,13 @@ class calc {
           
            
           public function divisionZero() {
-              If($this->y==0 and $this->sign =="/"){
+              If($this->y!=="0" or $this->sign !=="/"){
+                  return true;
+                 
+              }
+              else {
                   return false;
               }
-              else {return true;}
           }
       
 
@@ -71,7 +74,7 @@ $check -> x = $first;
 $check -> y = $second;
 $check -> sign = $type;
 
-echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
+//echo "<p><pre>".var_export($check, TRUE). "</pre><p>";
 
 //echo "<h2>Calculations with data from inputs</h2>";
 if($check -> divisionZero()){
@@ -83,7 +86,7 @@ if($check -> divisionZero()){
     }
 }
 else {
- $result = "Cannot divide by zero";
+ $result = $check -> divisionZero()."You can't divide by zero";
 }
 
 
